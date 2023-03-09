@@ -6,8 +6,9 @@
   "author": "10tera <tyyt151123@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build-renderer-dev": "webpack --mode development",
-    "start-renderer-server": "webpack-dev-server --open --mode development",
+    "build-renderer-dev": "webpack --config webpack.renderer.js --mode development",
+    "build-renderer-prod": "webpack --config webpack.renderer.js --mode production",
+    "start-renderer-server": "webpack-dev-server --config webpack.renderer.js --open --mode development",
     "format": "prettier-eslint --write **/*.{ts,tsx,css}",
     "lint": "eslint . --ext .ts,.tsx"
   },
