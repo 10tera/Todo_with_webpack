@@ -3,6 +3,8 @@
 */
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
+
 
 module.exports = {
     entry: {
@@ -19,7 +21,7 @@ module.exports = {
                 test: /\.ts[x]?$/, use: "ts-loader"
         }]
     },
-    target: "node",
+    target: "web",
     resolve: {
         extensions: [".ts",".js",".tsx",".jsx"]
     },
@@ -28,5 +30,11 @@ module.exports = {
             template: "./renderer/src/index.html",
             filename: "index.html",
         }),
+        new webpack.DefinePlugin({
+            "process.env": JSON.stringify(process.env)
+        }),
     ],
+    devServer: {
+
+    },
 }
