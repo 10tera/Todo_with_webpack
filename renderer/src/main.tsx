@@ -6,15 +6,13 @@ import App from "./App";
 const root = ReactDom.createRoot(
     document.getElementById("root") as HTMLElement,
 );
-console.log("a");
-console.log(process.argv);
 // const isDevelopment = process.argv[process.argv.indexOf("--mode") + 1] === "development";
 // console.log(isDevelopment);
 
 root.render(
     <React.StrictMode>
-        <BrowserRouter>
+        <HashRouter>
             <App />
-        </BrowserRouter>
+        </HashRouter>
     </React.StrictMode>,
 );

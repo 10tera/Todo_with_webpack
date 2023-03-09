@@ -1,7 +1,7 @@
 {
   "name": "Todo_with_webpack",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/main.js",
   "repository": "https://github.com/10tera/Todo_with_webpack",
   "author": "10tera <tyyt151123@gmail.com>",
   "license": "MIT",
@@ -9,6 +9,10 @@
     "build-renderer-dev": "webpack --config webpack.renderer.js --mode development",
     "build-renderer-prod": "webpack --config webpack.renderer.js --mode production",
     "start-renderer-server": "webpack-dev-server --config webpack.renderer.js --open --mode development",
+    "build-main-dev": "webpack --config webpack.main.js --mode development",
+    "build-main-prod": "webpack --config webpacl.main.js --mode production",
+    "start-electron": "electron .",
+    "dev": "run-p start-renderer-server build-main-dev",
     "format": "prettier-eslint --write **/*.{ts,tsx,css}",
     "lint": "eslint . --ext .ts,.tsx"
   },
@@ -43,6 +47,8 @@
     "typescript": "^4.9.5",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "webpack-electron-reload": "^1.0.1",
+    "yarn-run-all": "^3.1.1"
   }
 }

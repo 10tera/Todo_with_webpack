@@ -37,4 +37,5 @@ module.exports = {
     devServer: {
 
     },
+    watch: true
 }
