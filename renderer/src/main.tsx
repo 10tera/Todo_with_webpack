@@ -2,6 +2,7 @@ import React from "react";
 import ReactDom from "react-dom/client";
 import {BrowserRouter, HashRouter} from "react-router-dom";
 import App from "./App";
+import {ThemeProvider } from "./components/ThemeContext/ThemeProvider";
 
 const root = ReactDom.createRoot(
     document.getElementById("root") as HTMLElement,
@@ -12,7 +13,9 @@ const root = ReactDom.createRoot(
 root.render(
     <React.StrictMode>
         <HashRouter>
-            <App />
+            <ThemeProvider>
+                <App/>
+            </ThemeProvider>
         </HashRouter>
     </React.StrictMode>,
 );
