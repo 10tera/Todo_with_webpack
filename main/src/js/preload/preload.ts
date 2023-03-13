@@ -1,4 +1,8 @@
+import {ipcRenderer, IpcRendererEvent,contextBridge} from "electron";
 
-window.onload = () => {
-    console.log("preload script loaded");
-}
+ipcRenderer.invoke("sendIPC").then((IPC) => {
+    contextBridge.exposeInMainWorld("eAPI", {
+        getSettings: (key: string) => ipcRenderer.invoke(IPC.store.getSettings,key),
+        setSettings: (args: {key: string, data: any}) => ipcRenderer.send(IPC.store.setSettings,args),
+    })
+})
