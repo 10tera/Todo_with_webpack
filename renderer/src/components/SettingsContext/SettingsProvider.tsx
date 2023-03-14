@@ -9,10 +9,14 @@ type Props = {
 export const SettingsProvider = (props: Props) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [todoSettings, setTodoSettings]: [TaskGroup[], React.Dispatch<React.SetStateAction<TaskGroup[]>>] = useState<TaskGroup[]>([]);
+    const saveTodoSettings = (data: TaskGroup[]) => {
+        setTodoSettings(data);
+        window.eAPI.setSettings({key: "Todo",data:data});
+    }
     
     const setInitContext = () => {
-        window.eAPI.getSettings("Todo").then((data: Settings) => {
-            setTodoSettings(data.Todo);
+        window.eAPI.getSettings("Todo").then((data: TaskGroup[]) => {
+            setTodoSettings(data);
         })
     }
     useEffect(() => {
@@ -23,7 +27,7 @@ export const SettingsProvider = (props: Props) => {
         setInitContext();
     },[]);
     return(
-        <SettingsContext.Provider value={{Todo: todoSettings,setTodoSettings: setTodoSettings}}>
+        <SettingsContext.Provider value={{Todo: todoSettings,setTodoSettings: saveTodoSettings}}>
             {props.children}
         </SettingsContext.Provider>
     )

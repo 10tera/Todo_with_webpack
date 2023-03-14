@@ -46,11 +46,15 @@ app.on("ready", () => {
     });
 
     ipcMain.handle(IPC.store.getSettings, async(_event: Electron.IpcMainInvokeEvent, key: string) => {
+        console.log("get");
+        console.log(store.get(key));
         return store.get(key);
     });
 
     ipcMain.on(IPC.store.setSettings,(_event: Electron.IpcMainEvent,args: {key: string, data: any}) => {
         store.set(args.key,args.data);
+        console.log("set");
+        console.log(store.get(args.key));
     });
 })
 

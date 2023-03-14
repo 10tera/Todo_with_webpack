@@ -3,6 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import React, { ReactNode,useState,useContext } from "react";
 import { SettingsContext } from "./SettingsContext/SettingsContext";
+import { group } from "console";
 
 type Props = {
     children: ReactNode;
@@ -25,7 +26,16 @@ export const GroupTitle = (props: Props) => {
         setAddTaskName(_event.target.value);
     }
     const handleAddTaskButtonClick = () => {
+        console.log(settingsContextValue);
         const newSettingsContext = [...settingsContextValue.Todo];
+        newSettingsContext.map((groupData,groupDataIndex) => {
+            if(groupDataIndex === props.groupIndex){
+                newSettingsContext[groupDataIndex].data.push({title: addTaskName,description: ""});
+            }
+        })
+        settingsContextValue.setTodoSettings(newSettingsContext);
+        setAddTaskName("");
+        setIsDialogOpen(false);
     }
     return (
         <div style={{width: "auto",height: "40px",margin: "5px",backgroundColor: "green"}}>
